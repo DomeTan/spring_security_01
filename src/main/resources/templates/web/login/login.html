@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<title>登录界面(初识SpringSecurity)</title>
+	</head>
+	<body>
+		<div id="login-form">
+			<div>
+				<label>账户:</label>
+				<input type="text" name="username"  id="username" />
+			</div>
+			<div>
+				<label>密码:</label>
+				<input type="password" name="password" id="password" />
+			</div>
+			<div>
+				<input name="wam_remember_me" title="记住密码" type="checkbox" value="true">
+				<span>记住我</span>
+			</div>
+			<div>
+				<button id="submit" onclick="login()">登 录</button>
+			</div>
+		</div>
+	<script type="application/javascript" th:src="@{/public/js/jquery-3.2.1.min.js}"></script>
+		<script>
+
+			function login() {
+				var username = $("#username").val();
+				var password = $("#password").val();
+				$.ajax({
+					url : "/api/v1/login",
+					method : "POST",
+					dataType : "JSON",
+					data : {
+						username : username,
+						password : password
+					},
+					success : function (result) {
+						console.log("success");
+						console.log(result);
+						location.href = result['redirect'];
+					}
+				})
+			}
+		</script>
+	</body>
+</html>
