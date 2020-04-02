@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="utf-8">
 		<title>登录成功访问的第一个界面</title>
 	</head>
 	<body>
 		<h1>登录成功访问的第一个界面</h1>
+		<button onclick="insert()">添加数据</button>
+		<script type="application/javascript" th:src="@{/public/js/jquery-3.2.1.min.js}"></script>
+		<script>
+			function insert() {
+				// var asset = {
+				// 	name : "资产档案服务器",
+				// 	ip : "172.168.1.181"
+				// };
+				// var paramFlag = ;
+				$.ajax({
+					url : "/api/v1/asset",
+					method : "POST",
+					dataType : "JSON",
+					data : {
+							name : "",
+							ip : "172.168.1.181",
+							param : "param"
+						// ,
+						// paramFlag:{
+						// 	paramFlag : "flag"
+						// }
+					}
+				})
+			}
+		</script>
 	</body>
+
+
+
 </html>

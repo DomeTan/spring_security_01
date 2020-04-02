@@ -1,21 +1,14 @@
 package cn.gotham.spring_security_01;
 
-import cn.gotham.spring_security_01.user.enumeration.Authority;
-import cn.gotham.spring_security_01.user.model.Role;
-import cn.gotham.spring_security_01.user.model.User;
+import cn.gotham.spring_security_01.asset.bean.ParamFlag;
+import cn.gotham.spring_security_01.asset.service.AssetService;
 import cn.gotham.spring_security_01.user.repository.RoleRepository;
 import cn.gotham.spring_security_01.user.repository.UserRepository;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-
-import java.util.*;
-import java.util.stream.Collectors;
 
 @SpringBootTest
 class SpringSecurity01ApplicationTests {
@@ -27,8 +20,13 @@ class SpringSecurity01ApplicationTests {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private AssetService assetService;
+
     @Test
-    void contextLoads() {
+    void contextLoads() throws Exception {
+
+        assetService.insert("20200323","172.156.7.7",new ParamFlag("flag"));
 //
 //        var role = new Role();
 //        role.setRoleName("初始权限");
@@ -67,6 +65,7 @@ class SpringSecurity01ApplicationTests {
 //        authorities.stream().forEach(grantedAuthority -> {
 //            LOGGER.info("写法二 ：： {}",grantedAuthority.getAuthority());
 //        });
+
 
     }
 
